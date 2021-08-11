@@ -9,10 +9,12 @@ import {
 import { Navbar } from './components/navbar';
 import { Products } from './components/products';
 import { Cart } from './components/cart';
+import { Payment } from './components/payment';
 
 import {
   ROUTE_CART,
   ROUTE_PRODUCTS,
+  ROUTE_PAYMENT,
 } from './routes';
 
 export const App = () => (
@@ -26,8 +28,11 @@ export const App = () => (
         <Route path={ROUTE_CART} exact={true}>
           <Cart />
         </Route>
+        <Route path={ROUTE_PAYMENT} exact={true}>
+          <Payment />
+        </Route>
         <Route path="*">
-          <Redirect to={ROUTE_PRODUCTS}/>
+          <Redirect to={ROUTE_PRODUCTS} />
         </Route>
       </Switch>
     </Router>

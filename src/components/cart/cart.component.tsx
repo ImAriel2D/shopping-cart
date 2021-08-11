@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Button } from '@material-ui/core';
 
 import { useTypedSelector } from '../../hooks/useTypedSelector';
@@ -6,6 +7,8 @@ import { useTypedSelector } from '../../hooks/useTypedSelector';
 import { ProductInCart } from '../product-in-cart';
 
 import { useUpdateTotal } from '../../hooks/useUpdateTotal';
+
+import { ROUTE_PAYMENT } from '../../routes';
 
 export const Cart = () => {
   useUpdateTotal();
@@ -26,7 +29,9 @@ export const Cart = () => {
       <h3>Total: ${cart.total}</h3>
       {
         products.length > 0 ? (
-          <Button>Go to pay</Button>
+          <Link to={ROUTE_PAYMENT}>
+            <Button>Go to pay</Button>
+          </Link>
         ) : null
       }
     </div>
