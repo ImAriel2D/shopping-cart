@@ -1,1 +1,1 @@
-export { Cart } from './cart.container';
+export { Cart } from './cart.component';

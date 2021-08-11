@@ -5,7 +5,11 @@ import { ProductInCartComponent } from './product-in-cart.component';
 
 import { ProductType } from '../product';
 
-import { addProduct } from '../../store/actions/products';
+import {
+  addProduct,
+  removeProduct,
+  decreaseProduct,
+} from '../../store/actions/products';
 
 interface ProductInCartType {
   product: ProductType;
@@ -19,8 +23,12 @@ export const ProductInCart: FC<ProductInCartType> = ({ product, count }) => {
     dispatch(addProduct({ ...product }));
   };
   
-  const onRemoveClick = () => {
+  const onDecreaseClick = () => {
+    dispatch(decreaseProduct({ ...product }));
+  };
   
+  const onRemoveClick = () => {
+    dispatch(removeProduct({ ...product }));
   };
   
   return (
@@ -29,6 +37,7 @@ export const ProductInCart: FC<ProductInCartType> = ({ product, count }) => {
       count={count}
       onAddClick={onAddClick}
       onRemoveClick={onRemoveClick}
+      onDecreaseClick={onDecreaseClick}
     />
   );
 };

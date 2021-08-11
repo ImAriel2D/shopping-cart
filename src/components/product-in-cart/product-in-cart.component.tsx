@@ -3,6 +3,7 @@ import { IconButton } from '@material-ui/core';
 import {
   Add,
   Remove,
+  Delete,
 } from '@material-ui/icons';
 
 import { ProductType } from '../product';
@@ -11,6 +12,7 @@ interface ProductInCartComponentType {
   product: ProductType;
   count: number;
   onAddClick: () => void,
+  onDecreaseClick: () => void,
   onRemoveClick: () => void,
 }
 
@@ -18,6 +20,7 @@ export const ProductInCartComponent: FC<ProductInCartComponentType> = ({
   product,
   count,
   onAddClick,
+  onDecreaseClick,
   onRemoveClick,
 }) => (
   <div>
@@ -27,8 +30,11 @@ export const ProductInCartComponent: FC<ProductInCartComponentType> = ({
       <Add />
     </IconButton>
     <span>{ count }</span>
-    <IconButton onClick={onRemoveClick}>
+    <IconButton onClick={onDecreaseClick}>
       <Remove />
+    </IconButton>
+    <IconButton onClick={onRemoveClick}>
+      <Delete />
     </IconButton>
   </div>
 );
