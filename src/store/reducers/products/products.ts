@@ -26,14 +26,22 @@ const sortProducts = (products: ProductState[]) => {
   });
 };
 
+const findProduct = (products: ProductState[], target: string) => {
+  return products.find((product) => product.product.name === target);
+};
+
+const removeByName = (products: ProductState[], target: string) => {
+  return products.filter((product) => product.product.name !== target)
+}
+
 export const productsReducer = (state = initialState, { type, payload }: Payload) => {
   switch (type) {
     case PRODUCT_ADD:
-      let productToAdd = state.find((product) => product.product.name === payload.name);
+      let productToAdd = findProduct(state, payload.name);
       
       if (productToAdd) {
         productToAdd.count += 1;
-        const products = state.filter((product) => product.product.name !== payload.name);
+        const products = removeByName(state, payload.name);
         
         return sortProducts([...products, productToAdd]);
       } else {
@@ -41,11 +49,11 @@ export const productsReducer = (state = initialState, { type, payload }: Payload
       }
     
     case PRODUCT_DECREASE:
-      let productToRemove = state.find((product) => product.product.name === payload.name);
+      let productToRemove = findProduct(state, payload.name);
   
       if (productToRemove && productToRemove.count > 1) {
         productToRemove.count -= 1;
-        const products = state.filter((product) => product.product.name !== payload.name);
+        const products = removeByName(state, payload.name);
     
         return sortProducts([...products, productToRemove]);
       }
@@ -53,7 +61,7 @@ export const productsReducer = (state = initialState, { type, payload }: Payload
       return state;
     
     case PRODUCT_DELETE:
-      return [...state.filter((product) => product.product.name !== payload.name)];
+      return [...removeByName(state, payload.name)];
       
     default:
       return state;
