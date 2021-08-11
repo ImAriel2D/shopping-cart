@@ -1,4 +1,5 @@
 import React, { FC } from 'react';
+import { Button } from '@material-ui/core';
 
 import { ProductType } from './products.types';
 
@@ -11,6 +12,6 @@ export const ProductComponent: FC<ProductComponentProps> = ({ product, onClick})
   <div>
     <h1>{product.name}</h1>
     <p>{product.price}</p>
-    <button onClick={onClick}>Add to cart</button>
+    <Button color="primary" onClick={onClick}>Add to cart</Button>
   </div>
 );

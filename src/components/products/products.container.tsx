@@ -4,8 +4,12 @@ import { ProductsComponent } from './products.component';
 
 import { ProductType } from '../product';
 
+import { useUpdateTotal } from '../../hooks/useUpdateTotal';
+
 export const Products = () => {
-  const [products, setProducts] = useState<ProductType[]>([]);
+  useUpdateTotal();
+  
+  const [fetchedProducts, setFetchedProducts] = useState<ProductType[]>([]);
   
   useEffect(() => {
     const data: ProductType[] = [
@@ -23,8 +27,8 @@ export const Products = () => {
       },
     ];
     
-    setProducts(data);
+    setFetchedProducts(data);
   }, []);
-
-  return <ProductsComponent products={products} />
+  
+  return <ProductsComponent products={fetchedProducts} />;
 };
